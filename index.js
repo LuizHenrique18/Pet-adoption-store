@@ -14,7 +14,9 @@ app.use(express.static("public"));
 
 // Router
 const userRouter = require("./routes/userRoutes");
+const petRouter = require("./routes/petRoutes");
 
-app.use("/", userRouter);
+app.use("/users", userRouter);
+app.use("/pet", petRouter);
 
 app.listen(3000);

@@ -139,15 +139,20 @@ module.exports = class UserController {
     const token = getToken(req);
     const user = await getUserByToken(token);
 
-    const { name, email, phone, password, confirmpassword, image } = req.body;
+    const { name, email, phone, password, confirmpassword } = req.body;
 
     //Check if user exists
     if (!user) {
       res.status(400).json({ message: "Usuário não encontrado!" });
       return;
     }
-    //Validation User
+    let image = "";
+    // image way
+    if (req.file) {
+      user.image = req.file.filename;
+    }
 
+    //Validation User
     if (!name) {
       res.status(422).json({ message: "O nome é obrigatório" });
       return;
@@ -192,7 +197,7 @@ module.exports = class UserController {
 
     try {
       await User.findOneAndUpdate(
-        { id: user._id },
+        { _id: user._id },
         { $set: user },
         { new: true }
       );
