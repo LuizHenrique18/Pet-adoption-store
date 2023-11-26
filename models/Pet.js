@@ -21,10 +21,13 @@ const Pet = mongoose.model(
         type: String,
         required: true,
       },
-      image: {
-        type: String,
-        required: true,
+      images: {
+        type: Array,
       },
+      user: {
+        type:Object,
+      },
+      adopted: Object,
     },
     { timestamps: true }
   )

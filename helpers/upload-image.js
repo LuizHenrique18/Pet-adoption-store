@@ -3,19 +3,22 @@ const path = require("path");
 
 // where the photos will be safe
 const imageStorage = multer.diskStorage({
-  destination: function (req, res, cb) {
+  destination: function (req, file, cb) {
     let folder = "";
 
     if (req.baseUrl.includes("users")) {
       folder = "users";
     } else if (req.baseUrl.includes("pets")) {
-      folder = "pet";
+      folder = "pets";
     }
-
     cb(null, `public/images/${folder}`);
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(
+      null,
+      String(Math.floor(Math.random() * 100) + Date.now()) +
+        path.extname(file.originalname)
+    );
   },
 });
 

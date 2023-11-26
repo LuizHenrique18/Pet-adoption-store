@@ -17,6 +17,6 @@ const userRouter = require("./routes/userRoutes");
 const petRouter = require("./routes/petRoutes");
 
 app.use("/users", userRouter);
-app.use("/pet", petRouter);
+app.use("/pets", petRouter);
 
 app.listen(3000);
