@@ -15,5 +15,9 @@ router.post(
 );
 router.get("/", PetController.getAll);
 router.get("/pets", PetController.getAllUserPets);
+router.get("/petadoption", PetController.petAdoption)
+router.get("/pet:id", PetController.getPeById)
+router.delete("/:id", verifyToken, PetController.removePetById)
+router.patch("/:id", verifyToken, imageUpload.array('images'),PetController.updatePatch)
 
 module.exports = router;
